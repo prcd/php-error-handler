@@ -14,6 +14,7 @@ register_shutdown_function('error_handler');
  * @param $err_str
  * @param $err_file
  * @param $err_line
+ * @return null
  */
 function error_handler($err_no = null, $err_str = null, $err_file = null, $err_line = null)
 {
