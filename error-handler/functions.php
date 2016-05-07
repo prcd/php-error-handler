@@ -43,7 +43,7 @@ function error_handler($err_no = null, $err_str = null, $err_file = null, $err_l
 		'1024'  => 'E_USER_NOTICE',       //   -    User-generated notice message. This is like an E_NOTICE, except it is generated in PHP code by using the PHP function trigger_error().
 		'4096'  => 'E_RECOVERABLE_ERROR', //   Y    Catchable fatal error. It indicates that a probably dangerous error occurred, but did not leave the Engine in an unstable state. If the error is not caught by a user defined handle (see also set_error_handler()), the application aborts as it was an E_ERROR.
 		'8192'  => 'E_DEPRECATED',        //   -    Run-time notices. Enable this to receive warnings about code that will not work in future versions.
-		'16384' => 'E_USER_DEPRECATED',   //   -    Run-time notices. Enable this to receive warnings about code that will not work in future versions.
+		'16384' => 'E_USER_DEPRECATED',   //   -    User-generated warning message. This is like an E_DEPRECATED, except it is generated in PHP code by using the PHP function trigger_error().
 	];
 
 	// add error to log array
