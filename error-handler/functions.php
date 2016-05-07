@@ -22,8 +22,10 @@ function error_handler($err_no = null, $err_str = null, $err_file = null, $err_l
 	static $fatal = false;
 
 	if ($err_no === null) {
-		// being called as a shutdown function, pass data through to next function
-		error_handler_final($log, $fatal);
+		// being called as a shutdown function, pass data through to next function if there are any logged errors
+		if (count($log)) {
+			error_handler_final($log, $fatal);
+		}
 		return null;
 	}
 
