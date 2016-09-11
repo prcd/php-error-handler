@@ -1,31 +1,56 @@
 <?php
 
+// =====================
+//   PHP ERROR HANDLER
+// =====================
+//
+// v1.0.0
+//
+// Logs all PHP errors into a directory of your choice into two files - fatal.txt and background.txt.
+//
+// Set the constant values below, then include this file as early as possible in your script.
+//
+// You may also retrieve any errors during run time with error_handler_clear_log(). This function
+// will return an array of all errors with details - these errors will not be logged. This is useful
+// for debugging, you could for example call error_handler_clear_log() at the end of your script and
+// echo the array.
 
-/**
- * The directory to place logs into (no trailing '/').
- */
+
+// ====================
+//   DEFINE CONSTANTS
+// ====================
+//
+// ERROR_HANDLER_LOG_DIRECTORY
+//
+// The directory to place logs into (no trailing '/') - make sure you have write permissions within this directory
+//
 define('ERROR_HANDLER_LOG_DIRECTORY', substr(__DIR__, 0, -7).'/examples/error-logs');
-
-
-/**
- * Timestamp to set against any logged errors.
- */
-define('ERROR_HANDLER_TIMESTAMP', time());
-
-
-/**
- * Error codes that will not stop script
- */
-define('ERROR_HANDLER_CONTINUE', E_WARNING | E_CORE_WARNING | E_NOTICE | E_COMPILE_WARNING | E_USER_WARNING | E_USER_NOTICE | E_DEPRECATED | E_USER_DEPRECATED);
-
-
-/**
- * How to deal with fatal errors.
- * If false, error details will be echo'd (development),
- * if string begins 'http' script will redirect to URL, (if re-directing to same domain, a static page will avoid loops if error is triggered during core framework processing)
- * else the constant value will be echo'd.
- */
+//
+//
+// ERROR_HANDLER_FATAL_ACTION
+//
+// This determines how fatal errors are dealt with.
+//  - If false, error details will be echo'd (development),
+//  - if string begins 'http' script will redirect to URL, (if re-directing to same domain, a static page will avoid loops if error is triggered during core framework processing)
+//  - else the constant value will be echo'd.
+//
 define('ERROR_HANDLER_FATAL_ACTION', false);
+//
+//
+// ERROR_HANDLER_TIMESTAMP
+//
+// This is a string that will be added to each error log so you know when the error(s) occurred.
+//
+define('ERROR_HANDLER_TIMESTAMP', time());
+//
+//
+// ERROR_HANDLER_CONTINUE
+//
+// Any error codes encountered that are not listed here will be treated as a fatal error.
+//
+define('ERROR_HANDLER_CONTINUE', E_WARNING | E_CORE_WARNING | E_NOTICE | E_COMPILE_WARNING | E_USER_WARNING | E_USER_NOTICE | E_DEPRECATED | E_USER_DEPRECATED);
+//
+//
 
 
 // do not display errors
