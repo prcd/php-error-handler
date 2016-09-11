@@ -4,7 +4,7 @@
 //   PHP ERROR HANDLER
 // =====================
 //
-// v1.0.0
+// v1.0.1
 //
 // Logs all PHP errors into a directory of your choice into two files - fatal.txt and background.txt.
 //
@@ -29,9 +29,9 @@ define('ERROR_HANDLER_LOG_DIRECTORY', substr(__DIR__, 0, -7).'/examples/error-lo
 //
 // ERROR_HANDLER_FATAL_ACTION
 //
-// This determines how fatal errors are dealt with.
-//  - If false, error details will be echo'd (development),
-//  - if string begins 'http' script will redirect to URL, (if re-directing to same domain, a static page will avoid loops if error is triggered during core framework processing)
+// Determines how fatal errors are dealt with -
+//  - if false, error details will be echo'd and not logged (useful for development),
+//  - if string begins 'http' script will redirect to URL (if redirect includes this file and script that produces a fatal error, an infinite loop will occur),
 //  - else the constant value will be echo'd.
 //
 define('ERROR_HANDLER_FATAL_ACTION', false);
@@ -39,14 +39,14 @@ define('ERROR_HANDLER_FATAL_ACTION', false);
 //
 // ERROR_HANDLER_TIMESTAMP
 //
-// This is a string that will be added to each error log so you know when the error(s) occurred.
+// A string added to each error log so you know when the error(s) occurred.
 //
 define('ERROR_HANDLER_TIMESTAMP', time());
 //
 //
 // ERROR_HANDLER_CONTINUE
 //
-// Any error codes encountered that are not listed here will be treated as a fatal error.
+// Any errors encountered that are not listed here will be treated as fatal, script will not continue to run.
 //
 define('ERROR_HANDLER_CONTINUE', E_WARNING | E_CORE_WARNING | E_NOTICE | E_COMPILE_WARNING | E_USER_WARNING | E_USER_NOTICE | E_DEPRECATED | E_USER_DEPRECATED);
 //
@@ -60,6 +60,9 @@ error_reporting(0);
 set_error_handler('error_handler');
 register_shutdown_function('error_handler_check_for_fatal');
 register_shutdown_function('error_handler');
+
+// check for write permissions to log files
+if (!is_writable(ERROR_HANDLER_LOG_DIRECTORY . '/background.txt') || !is_writable(ERROR_HANDLER_LOG_DIRECTORY . '/fatal.txt')) exit('Error handler cannot write to log files or log files do not exist.');
 
 
 /**
