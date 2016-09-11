@@ -2,8 +2,8 @@
 
 /*
  * Uncomment or comment the code below and run this file to generate different errors.
- * All errors will be logged in the logs folder and fatal errors will be echo'd.
- * Custom actions for fatal errors can be set in error-handler.php.
+ * Any logs will appear in the log files.
+ * Custom actions for fatal errors can be set in source/error-handler.php.
  */ 
 
 
@@ -28,14 +28,14 @@ $x = 10 / 0;
 /*
  * E_USER_NOTICE
  */
-//trigger_error('A user notice error, this will be logged but the script will continue to run', E_USER_NOTICE);
+trigger_error('A user notice error, this will be logged but the script will continue to run', E_USER_NOTICE);
 
 
 /*
  * E_COMPILE_ERROR
  * require(): Failed opening required...
  */
-require 'shes/not/there.php';
+//require 'shes/not/there.php';
 
 
 /*

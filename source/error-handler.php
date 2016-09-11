@@ -4,9 +4,9 @@
 //   PHP ERROR HANDLER
 // =====================
 //
-// v1.0.1
+// v1.0.2
 //
-// Logs all PHP errors into a directory of your choice into two files - fatal.txt and background.txt.
+// Logs all PHP errors to a directory of your choice into two files - fatal.txt and background.txt.
 //
 // Set the constant values below, then include this file as early as possible in your script.
 //
@@ -24,7 +24,7 @@
 //
 // The directory to place logs into (no trailing '/') - make sure you have write permissions within this directory
 //
-define('ERROR_HANDLER_LOG_DIRECTORY', substr(__DIR__, 0, -7).'/examples/error-logs');
+define('ERROR_HANDLER_LOG_DIRECTORY', substr(__DIR__, 0, -6) . 'examples/error-logs');
 //
 //
 // ERROR_HANDLER_FATAL_ACTION
